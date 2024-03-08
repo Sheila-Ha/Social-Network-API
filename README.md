@@ -10,13 +10,19 @@ by Sheila Hanson ![Github license](https://img.shields.io/badge/license-MIT-blue
   - [User Story](#user-story)
   - [Acceptance Criteria](#acceptance-criteria)
 - [Usage](#usage)
+  - [Database Model Diagram](#database-model-diagram)
+- [API Endpoints](#api-endpoints)
+  - [User Routes](#user-routes)
+  - [Post Routes](#post-routes)
+  - [Comment Routes](#comment-routes)
+  - [Like Routes](#like-routes)
+  - [Testing](#testing)
 - [Features](#features)
 - [Challenges](#challenges)
 - [Contributing](#contributing)
-- [Testing](#testing)
 - [Questions](#questions)
 - [License](#license)
-- [Badges](#badges)
+- [Badges of Technologies Used](#badges-of-technologies-used)
     
 
 ## Installation
@@ -70,10 +76,40 @@ by Sheila Hanson ![Github license](https://img.shields.io/badge/license-MIT-blue
            - response on last line = App listening on port 3001!  
   ![alt text](assets/img/npmi.png)  
 ![alt text](assets/img/npmrunwatch.png)
-- Insomnia - testing will be done here
 
- - Database Model Diagram  
-![alt text](<assets/img/EER Diagram.png>)  
+ ### Database Model Diagram  
+![alt text](<assets/img/EER Diagram.png>) 
+
+## API Endpoints  
+  ### User Routes  
+  - POST /api/user/register: Register a new user account   
+  - POST /api/user/login: Log in as a user  
+  - POST /api/user/upload-avatar: Upload user avatar  
+  ### Post Routes  
+  - POST /api/posts: Create a new post  
+  - POST /api/posts/upload-image: Upload post image.  
+  - GET /api/posts: Retrieve all posts  
+  - GET /api/posts/:id: Retrieve a specific post by ID  
+  - PUT /api/posts/:id: Update a specific post by ID  
+  - DELETE /api/posts/:id: Delete a specific post by ID  
+  ### Comment Routes  
+  - POST /api/comments: Create a new comment  
+  - GET /api/comments: Retrieve all comments for a specific post  
+  - PUT /api/comments/:id: Update a specific comment by ID  
+  - DELETE /api/comments/:id: Delete a specific comment by ID  
+  ### Like Routes  
+  - POST /api/likes: Add a like to a post  
+  - DELETE /api/likes/:id: Remove a like from a post  
+  - GET /api/likes/:postId: Retrieve all likes for a specific post  
+  
+### Testing 
+Insomnia - testing will be done using Insomnia
+  - run npm run start
+  - make sure your mongoDB has the DB from the server.js and vice versa connected up
+  - in insomnia, you will do get, post, delete routes for users, thoughts, friends and reactions
+  - an example of a post user route: URL: [http://localhost:3001/api/users](http://localhost:3001/api/users) - then the json body: {"username": "test4", "email":  "test@test.com"}
+
+ 
   
   DEMO: ()
 
@@ -100,10 +136,6 @@ by Sheila Hanson ![Github license](https://img.shields.io/badge/license-MIT-blue
 [YouTube](https://youtube.com)  
 [Insomnia](https://insomnia.rest)
 
-## Testing
-- Insomnia was used for testing this API  
-![  ](img)
-
 ## Questions
 ![Ask me anything](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)
 If you have any questions, or additional feedback, please feel free to email me and I will respond as soon as possible.
@@ -120,14 +152,13 @@ slhanson11@live.com
 
 
 
-## Badges
+## Badges of Technologies Used
 ![MDN Web Docs](https://img.shields.io/badge/MDN_Web_Docs-black?style=for-the-badge&logo=mdnwebdocs&logoColor=white)  ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
-![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Insomnia](https://img.shields.io/badge/Insomnia-black?logo=insomnia&logoColor=5849BE) ![MYSQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)    
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Insomnia](https://img.shields.io/badge/Insomnia-black?logo=insomnia&logoColor=5849BE)    
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)  ![.ENV Badge](https://img.shields.io/badge/.ENV-ECD53F?logo=dotenv&logoColor=000&style=flat-square) 
 ![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white)   
-![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)  ![Lenovo](https://img.shields.io/badge/lenovo-E2231A?style=for-the-badge&logo=lenovo&logoColor=white)  ![Sequelize Badge](https://img.shields.io/badge/Sequelize-52B0E7?logo=sequelize&logoColor=fff&style=flat-square)
-![W3schools](https://img.shields.io/badge/W3Schools-04AA6D?style=for-the-badge&logo=W3Schools&logoColor=white) ![JSON](https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=red)  
+![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)  ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?logo=mongodb&logoColor=white)  ![W3schools](https://img.shields.io/badge/W3Schools-04AA6D?style=for-the-badge&logo=W3Schools&logoColor=white) ![JSON](https://img.shields.io/badge/json-5E5C5C?style=for-the-badge&logo=json&logoColor=red)  
 ![Prettier](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E) ![Zoom](https://img.shields.io/badge/Zoom-2D8CFF?style=for-the-badge&logo=zoom&logoColor=white) ![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)  ![Google Chrome](https://img.shields.io/badge/Google_chrome-4285F4?style=for-the-badge&logo=Google-chrome&logoColor=white)  
-![MYSQLITE](https://img.shields.io/badge/Sqlite-003B57?style=for-the-badge&logo=sqlite&logoColor=white) ![Stack Overflow](https://img.shields.io/badge/Stack_Overflow-FE7A16?style=for-the-badge&logo=stack-overflow&logoColor=white)  ![Lenovo](https://img.shields.io/badge/lenovo%20laptop-E2231A?style=for-the-badge&logo=lenovo&logoColor=white)  
+![Stack Overflow](https://img.shields.io/badge/Stack_Overflow-FE7A16?style=for-the-badge&logo=stack-overflow&logoColor=white)  ![Lenovo](https://img.shields.io/badge/lenovo%20laptop-E2231A?style=for-the-badge&logo=lenovo&logoColor=white)  ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?logo=express&logoColor=%2361DAFB)
 
