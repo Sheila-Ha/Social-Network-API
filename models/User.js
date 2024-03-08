@@ -1,30 +1,34 @@
 const mongoose = require("mongoose");
 
 // Schema to create User model
-const userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema(
+  {
     username: {
-        type: String,
-        unique: true,
-        required: true, 
-        trim: true,
+      type: String,
+      unique: true,
+      required: true,
+      trim: true,
     },
     email: {
-        type: String,
-        unique: true,
-        required: true,
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, "Please enter a valid email address"],
+      type: String,
+      unique: true,
+      required: true,
+      match: [
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        "Please enter a valid email address",
+      ],
     },
     thoughts: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Thought",
-        },
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Thought",
+      },
     ],
     friends: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-        },
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
     ],
   },
   {
@@ -37,11 +41,12 @@ const userSchema = new mongoose.Schema({
   }
 );
 // Create a virtual property `commentCount` that get the amount of comments per user
-userSchema.virtual("friendCount")
-// Getter
-.get(function (){
-  return this.friend.length;
-});
+userSchema
+  .virtual("friendCount")
+  // Getter
+  .get(function () {
+    return this.friend.length;
+  });
 
 //Initialize our User model
 const User = mongoose.model("User", userSchema);
