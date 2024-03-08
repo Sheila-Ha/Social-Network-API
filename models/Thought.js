@@ -1,9 +1,10 @@
 // Require schema and model from mongoose
-const mongoose = require("mongoose");
+const { Schema, model } = require("mongoose");
+
 const reactionSchema = require("./Reaction");
 
-// Construct a new instance of the schema class
-const thoughtSchema = new mongoose.Schema(
+// Construct a new instance of the schema class to create Post model
+const thoughtSchema = new Schema(
   {
     thoughtText: {
       type: String,
@@ -23,7 +24,7 @@ const thoughtSchema = new mongoose.Schema(
     },
     reactions: [reactionSchema],
     user: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
@@ -31,16 +32,19 @@ const thoughtSchema = new mongoose.Schema(
   {
     toJSON: {
       virtuals: true,
-      getters: true,
     },
-  }
+    id: false,
+    },
 );
+// Create a virtual property `getTags` that gets the amount of tags associated with an application
+thoughtSchema
+  .virtual("reactionCount")
+  // Getter
+  .get(function () {
+    return this.reactions.length;
+  });
 
-thoughtSchema.virtual("reactionCount").get(function () {
-  return this.reactions.length;
-});
-
-// Using mongoose.model() to compile a model based on the schema 'thoughtSchema
-const Thought = mongoose.model("Thought", thoughtSchema);
+// Initialize Thought model
+const Thought = model("Thought", thoughtSchema);
 
 module.exports = Thought;
