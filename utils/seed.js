@@ -1,3 +1,4 @@
-const connection = require('../config/connection');
-const { User, Application } = require('../models')
-const { getRandomName, getRandomApplications } = require('./dateFormat');
+const connection = require("../config/connection");
+const { User, Thought } = require("../models");
+const { userData, thoughtData, reactionData } = require('./d')
+
