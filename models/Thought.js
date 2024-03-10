@@ -10,7 +10,7 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
       minlength: 1,
-      maxlength: 250,
+      maxlength: 280,
     },
     // Use built in data method to get current date
     createAt: {
