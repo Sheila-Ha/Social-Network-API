@@ -1,6 +1,6 @@
-const express = require('express');
-const db = require('../config/connection');
-const routes = require('../routes')
+const express = require("express");
+const db = require("../config/connection");
+const routes = require("../routes");
 
 // const cwd = process.cwd();
 
@@ -12,12 +12,12 @@ const app = express();
 //   ? cwd.split('01-Activities')[1]
 //   : cwd;
 
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(routes);
 
-db.once('open', () => {
-    app.listen(PORT, () => {
-        console.log('Server is running on port ${PORT}!');
-    });
+db.once("open", () => {
+  app.listen(PORT, () => {
+    console.log("Server is running on port ${PORT}!");
+  });
 });
