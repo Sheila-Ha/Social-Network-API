@@ -2,6 +2,32 @@
 const { Schema, model } = require("mongoose");
 
 const reactionSchema = require("./Reaction");
+{
+  reactionId: { 
+    type: Schema.Types.ObjectId,
+    default: () => new Types.ObjectId()
+  },
+  reactionBody: {
+    type: String,
+    required: true,
+    max: 280,
+  },
+  username: {
+    type: String,
+    require: true,
+  },
+createdAt: {
+  type: Date,
+  default: Date.now,
+    }
+  },
+  {
+    toJSON: {
+      getters: true,
+    },
+    id: false,
+  }
+);
 
 // Construct a new instance of the schema class to create Post model
 const thoughtSchema = new Schema(
@@ -9,6 +35,7 @@ const thoughtSchema = new Schema(
     thoughtText: {
       type: String,
       required: true,
+      trim: true,
       minlength: 1,
       maxlength: 280,
     },
@@ -18,9 +45,10 @@ const thoughtSchema = new Schema(
       default: Date.now,
       get: (timestamp) => new Date(timestamp).toISOString(),
     },
-    username: {
+    userId: {
       type: String,
       require: true,
+      trim: true,
     },
     reactions: [reactionSchema],
     user: {
@@ -31,6 +59,7 @@ const thoughtSchema = new Schema(
   },
   {
     toJSON: {
+      getters: true,
       virtuals: true,
     },
     id: false,
