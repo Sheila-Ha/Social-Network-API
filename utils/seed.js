@@ -47,16 +47,15 @@ connection.once("open", async () => {
     let thoughts = [];
     // If there's at least 1 thought, then GET random thought objects using a helper function, imported from ./test
     if (numberOfThoughts > 0) {
-      thoughts = getRandomThoughts(numberOfThoughts);
+      thoughts = getRandomThoughts(numberOfThoughts, userName);
     }
-    //console.log(thoughts);
+
     const user = new User({
       username: userName,
       email: email,
-      // friends: [],
       thoughts: thoughts
     });
-    //await User.collection.insertOne(user);
+
     users.push(user);
   }
 
@@ -75,21 +74,6 @@ connection.once("open", async () => {
 
   // Add users to the collection and await the results
   await User.collection.insertMany(users);
-
-  // Add thoughts to the collection and await the results
-  // await Thought.collection.insertOne({
-  //   thoughtText: "I love to play golf",
-  //   createAt: 3 / 9 / 24,
-  //   userName: users,
-  // });
-
-  // Seed data to indicate what should appear in database
-  // console.table(users);
-  // console.info("Seeding complete");
-  // process.exit(0);
-
-  //await User.collection.insertMany(users);
-  //await Thought.collection.insertMany(thoughts);
 
   console.log("Data seeded");
   process.exit(0);  

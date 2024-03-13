@@ -16,11 +16,11 @@ const thoughtSchema = new Schema(
       minlength: 1,
       maxlength: 280,
     },
-    // userId: {
-    //   type: String,
-    //   require: true,
-    //   trim: true,
-    // },    
+    userName: {
+      type: String,
+      require: true,
+      trim: true,
+    },    
     // Use built in data method to get current date
     createAt: {
       type: Date,

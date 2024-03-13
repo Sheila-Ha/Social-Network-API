@@ -3,7 +3,7 @@ const { User, Thought, Reaction, Friend } = require("../models");
 
 // console.log(dateFormat(Date.now()));
 
-const userNames = [
+const userNameData = [
   "aaran",
   "aaren",
   "aarez",
@@ -79,7 +79,7 @@ const userNames = [
   "parker",
 ];
 
-const thoughts = [
+const thoughtData = [
   "Hello World",
   "Track miles walked",
   "Tracked Hikes to go on",
@@ -104,7 +104,7 @@ const thoughts = [
   "Geo Caching",
 ];
 
-const reactions = [
+const reactionData = [
   "Cool",
   "Happy",
   "Awesome",
@@ -127,27 +127,38 @@ const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 // Get a random user name
 const getRandomUserName = function() {
-  const username = getRandomArrItem(userNames);
+  const username = getRandomArrItem(userNameData);
   
   // Remove the username from the list to prevent duplicates - https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array-in-javascript/5767357#5767357
-  const arrayIndex = userNames.indexOf(username);
-  userNames.splice(arrayIndex, 1);
+  const arrayIndex = userNameData.indexOf(username);
+  userNameData.splice(arrayIndex, 1);
 
   return username;
 }
 
+// Function to generate random reactions for a thought
+const getRandomReactions = () => {
+  const reactions = [];
+  // Get a random number of reactions between 0 and 8
+  const numberOfReactions = getRandomNumber(0, 8);
+  for (let i = 0; i < numberOfReactions; i++) {
+    reactions.push({
+      reactionBody: getRandomArrItem(reactionData),
+      userName: getRandomArrItem(userNameData),
+    });
+  }
+  return reactions;
+}
+
 // Function to generate random thoughts that we can add to user object
-const getRandomThoughts = (int) => {
+const getRandomThoughts = (int, userName) => {
   const userThoughts = [];
   for (let i = 0; i < int; i++) {
     userThoughts.push({
-      thoughtText: getRandomArrItem(thoughts),
+      thoughtText: getRandomArrItem(thoughtData),
+      userName: userName,
+      reactions: getRandomReactions()
     });
-    // const thought = new Thought({
-    //   thoughtText: getRandomArrItem(thoughts),
-    // });
-    //console.log(thought.thoughtText);
-    // userThoughts.push(thought);
   }
   return userThoughts;
 };
