@@ -30,19 +30,6 @@ connection.once("open", async () => {
   if (reactionData.length) {
     await connection.dropCollection("reactions");
   }
-  // let userCheck = await connection.db
-  //   .listCollections({ name: "users" })
-  //   .toArray();
-  // if (userCheck.length) {
-  //   await connection.dropCollection("users");
-  // }
-
-  // let thoughtsCheck = await connection.db
-  //   .listCollections({ name: "thoughts" })
-  //   .toArray();
-  // if (thoughtsCheck.length) {
-  //   await connection.dropCollection("thoughts");
-  // }
 
   // Create an empty array to hold users
   const users = [];
@@ -52,39 +39,25 @@ connection.once("open", async () => {
   for (let i = 0; i < 20; i++) {
     const userName = getRandomUserName();
     const email = `${userName}@test.com`;
-  
-    /*const user = users.push({
-      userName,
-      email,
-      // thoughts,
-      // friends,
-    });*/
+    
+    // Create thoughts for the user
+    // Set random number of thoughts between 0 and 5 - https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
+    let numberOfThoughts = Math.floor(Math.random() * (5 - 0 + 1) + 0);
+    console.log(numberOfThoughts);
+    let thoughts = [];
+    // If there's at least 1 thought, then GET random thought objects using a helper function, imported from ./test
+    if (numberOfThoughts > 0) {
+      thoughts = getRandomThoughts(numberOfThoughts);
+    }
+
     const user = new User({
       username: userName,
       email: email,
       // friends: [],
-      // thoughts: []
+      thoughts: thoughts
     });
     await User.collection.insertOne(user);
     //await User.collection.insertMany(users);
-
-    //console.log(user._id);
-
-    // Create thoughts for the user
-    // Set random number of thoughts between 0 and 5 - https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
-    var numberOfThoughts = Math.floor(Math.random() * (5 - 0 + 1) + 0);
-    console.log(numberOfThoughts);
-    // If there's at least 1 thought, then GET random thought objects using a helper function, imported from ./test
-    if (numberOfThoughts > 0) {
-      const thoughts = getRandomThoughts(numberOfThoughts, user._id);
-      //console.log(thoughts);
-      if (thoughts.length == 1) {
-        await Thought.collection.insertOne(thoughts);
-      }
-      else {
-        await Thought.collection.insertMany(thoughts);
-      }
-    }
   }
 
   // Add users to the collection and await the results

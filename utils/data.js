@@ -109,15 +109,22 @@ const thoughts = [
 const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 // Get a random user name
-const getRandomUserName = () => getRandomArrItem(userNames);
+const getRandomUserName = function() {
+  const username = getRandomArrItem(userNames);
+  
+  // Remove the username from the list to prevent duplicates - https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array-in-javascript/5767357#5767357
+  const arrayIndex = userNames.indexOf(username);
+  userNames.splice(arrayIndex, 1);
 
-// Function to generate random thoughts that we can add to student object
-const getRandomThoughts = (int, userId) => {
+  return username;
+}
+
+// Function to generate random thoughts that we can add to user object
+const getRandomThoughts = (int) => {
   const userThoughts = [];
   for (let i = 0; i < int; i++) {
     const thought = new Thought({
       thoughtText: getRandomArrItem(thoughts),
-      userId: userId
     });
     //console.log(thought.thoughtText);
     userThoughts.push(thought);
