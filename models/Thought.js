@@ -46,7 +46,7 @@ thoughtSchema
   });
 
 // Initialize Thought model
-// const Thought = model("Thought", thoughtSchema);
+const Thought = model("Thought", thoughtSchema);
 
-// module.exports = Thought;
-module.exports = thoughtSchema;
+module.exports = Thought;
+//module.exports = thoughtSchema;

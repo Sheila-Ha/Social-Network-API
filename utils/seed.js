@@ -48,6 +48,8 @@ connection.once("open", async () => {
     // If there's at least 1 thought, then GET random thought objects using a helper function, imported from ./test
     if (numberOfThoughts > 0) {
       thoughts = getRandomThoughts(numberOfThoughts, userName);
+      // Add thoughts to the collection and await the results
+      await Thought.collection.insertMany(thoughts);
     }
 
     const user = new User({

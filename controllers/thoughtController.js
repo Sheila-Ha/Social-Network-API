@@ -16,7 +16,7 @@ module.exports = {
   // Get a single thought by id
   async getSingleThought(req, res) {
     try {
-      const dbThoughtData = await Thought.findOne({ _id: req.params.thoughtId })
+      const dbThoughtData = await Thought.findById({ _id: req.params.thoughtId })
       .sort({ createAt: -1 });
 
       if (!dbThoughtData) {
