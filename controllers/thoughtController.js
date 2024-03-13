@@ -98,7 +98,7 @@ module.exports = {
           .json({ message: `Can not find this thought Id!` });
       }
 
-      res.json({ message: `Thought deleted.`, thought: dbThoughtData });
+      res.json({ message: `Thought removed.`, thought: dbThoughtData });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);

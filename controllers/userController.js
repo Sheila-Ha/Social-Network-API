@@ -54,7 +54,12 @@ module.exports = {
   // Update a user
   async updateUser(req, res) {
     try {
-      const dbUserData = await User.findOneAndUpdate(
+      // Get the user ID to update thoughts
+      let dbUserData = await User.findOne({ _id: req.params.userId });
+      const originalUsername = dbUserData.username;
+
+      // Update the user
+      dbUserData = await User.findOneAndUpdate(
         { _id: req.params.userId },
         {
           $set: req.body,
@@ -68,6 +73,30 @@ module.exports = {
       if (!dbUserData) {
         return res.status(404).json({ message: `No user with this Id!` });
       }
+
+      // If a username was passed in and the user was found, update username for thoughts and reactions
+      if(req.body.username != undefined && originalUsername != undefined) {
+        // Update any thoughts by the original username
+        await Thought.updateMany(
+          { userName: originalUsername },
+          {
+            userName: req.body.username,
+          },
+        );
+        
+        // Update any reactions by the original username
+      //   await Thought.updateMany(
+      //     { "reactions.userName": { $in: [originalUsername]} },
+      //     {
+      //       $set: { 'reactions.$[x].userName': req.body.username }
+      //     },
+      //     {
+      //       "arrayFilters": [
+      //         { "x.userName": { $in: [originalUsername]} }
+      //       ]
+      //     }        
+      //   );
+      // }
 
       res.json(dbUserData);
     } catch (err) {
@@ -87,7 +116,7 @@ module.exports = {
 
       // Bonus get ids of user's thought and delete them all
       await Thought.deleteMany({ _id: { $in: dbUserData.thoughts } });
-      res.json({ message: `No user with this Id ` });
+      res.json({ message: `User has been deleted` });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
