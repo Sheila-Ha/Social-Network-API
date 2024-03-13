@@ -3,10 +3,6 @@ const { Schema, Types } = require('mongoose');
 // Schema to create Reaction model
 const reactionSchema = new Schema(
   {
-    reactionId: {
-      type: Schema.Types.ObjectId,
-      default: () => new Types.ObjectId(),
-    },
     reactionBody: {
       type: String,
       required: true,
@@ -15,7 +11,9 @@ const reactionSchema = new Schema(
     userName: {
       type: String,
       required: true,
+      trim: true,
     },
+    // Use built in data method to get current date
     createAt: {
       type: Date,
       default: Date.now,
@@ -30,4 +28,4 @@ const reactionSchema = new Schema(
   }
 );
 
-module.export = reactionSchema;
+module.exports = reactionSchema;

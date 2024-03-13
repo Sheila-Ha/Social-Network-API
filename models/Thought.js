@@ -5,10 +5,6 @@ const reactionSchema = require("./Reaction");
 // Construct a new instance of the schema class to create Post model
 const thoughtSchema = new Schema(
   {
-    thoughtId: {
-      type: Schema.Types.ObjectId,
-      default: () => new Types.ObjectId(),
-    },
     thoughtText: {
       type: String,
       required: true,

@@ -13,6 +13,7 @@ connection.once("open", async () => {
   let thoughtsData = await connection.db
     .listCollections({ name: "thoughts" })
     .toArray();
+  // console.log(thoughtsData.length);
   if (thoughtsData.length) {
     await connection.dropCollection("thoughts");
   }
@@ -20,20 +21,21 @@ connection.once("open", async () => {
   let userData = await connection.db
     .listCollections({ name: "users" })
     .toArray();
+  // console.log(userData.length);
   if (userData.length) {
     await connection.dropCollection("users");
   }
 
-  let reactionData = await connection.db
-  .listCollections({ name: "reactions" })
-  .toArray();
-  if (reactionData.length) {
-    await connection.dropCollection("reactions");
-  }
+  // let reactionData = await connection.db
+  // .listCollections({ name: "reactions" })
+  // .toArray();
+  // if (reactionData.length) {
+  //   await connection.dropCollection("reactions");
+  // }
 
   // Create an empty array to hold users
   const users = [];
-  const friends = [];
+  //const friends = [];
 
   // Loop 20 times, add users to the user array
   for (let i = 0; i < 20; i++) {
@@ -43,7 +45,7 @@ connection.once("open", async () => {
     // Create thoughts for the user
     // Set random number of thoughts between 0 and 5
     let numberOfThoughts = getRandomNumber(0, 5);
-    console.log(numberOfThoughts);
+    //console.log(numberOfThoughts);
     let thoughts = [];
     // If there's at least 1 thought, then GET random thought objects using a helper function, imported from ./test
     if (numberOfThoughts > 0) {
