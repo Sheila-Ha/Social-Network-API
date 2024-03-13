@@ -85,7 +85,7 @@ module.exports = {
         return res.status(404).json({ message: `No thought with that Id` });
       }
 
-      // Remove through id from User's `thoughts` field
+      // Delete thought id from User's `thoughts` field
       const dbUserData = User.findOneAndUpdate(
         { thoughts: req.params.thoughtId },
         { $pull: { thoughts: req.params.thoughtId } },
@@ -98,7 +98,7 @@ module.exports = {
           .json({ message: `Can not find this thought Id!` });
       }
 
-      res.json({ message: `Thought removed.`, thought: dbThoughtData });
+      res.json({ message: `Thought deleted.`, thought: dbThoughtData });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -118,14 +118,14 @@ module.exports = {
         return res.status(404).json({ message: `Can not find Id` });
       }
 
-      res.json({ message: `Reacation added`, updatedThought: dbThoughtData });
+      res.json({ message: `Reaction added`, updatedThought: dbThoughtData });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
     }
   },
-// Remove a Reaction
-  async removeReaction(req, res) {
+// Delete a Reaction
+  async deleteReaction(req, res) {
     try {
       const dbThoughtData = await Thought.findOneAndUpdate(
         { _id: req.params.thoughtId },

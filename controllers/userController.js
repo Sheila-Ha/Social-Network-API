@@ -76,7 +76,7 @@ module.exports = {
     }
   },
 
-  // Delete user (bonus - remove a user's associated thought when deleted)
+  // Delete user (bonus - delete a user's associated thought when deleted)
   async deleteUser(req, res) {
     try {
       const dbUserData = await User.findOneAndDelete({ _id: req.params.userId });
@@ -113,8 +113,8 @@ module.exports = {
     }
   },
 
-  // Remove friend from friends list
-  async removeFriend(req, res) {
+  // Delete friend from friends list
+  async deleteFriend(req, res) {
     try {
       const dbUserData = await User.findOneAndUpdate(
         { _id: req.params.userId },

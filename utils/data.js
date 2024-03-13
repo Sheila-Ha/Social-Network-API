@@ -129,7 +129,7 @@ const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const getRandomUserName = function() {
   const username = getRandomArrItem(userNameData);
   
-  // Remove the username from the list to prevent duplicates - https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array-in-javascript/5767357#5767357
+  // Delete the username from the list to prevent duplicates - https://stackoverflow.com/questions/5767325/how-can-i-remove-a-specific-item-from-an-array-in-javascript/5767357#5767357
   const arrayIndex = userNameData.indexOf(username);
   userNameData.splice(arrayIndex, 1);
 

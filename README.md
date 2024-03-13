@@ -54,7 +54,7 @@ by Sheila Hanson ![Github license](https://img.shields.io/badge/license-MIT-blue
     THEN I am able to successfully create, update, and delete users and thoughts in my database  
 
     WHEN I test API POST and DELETE routes in Insomnia  
-    THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list  
+    THEN I am able to successfully create and delete reactions to thoughts and add and delete friends to a user’s friend list  
 
       
 ## Usage 
@@ -99,7 +99,7 @@ by Sheila Hanson ![Github license](https://img.shields.io/badge/license-MIT-blue
   - DELETE /api/comments/:id: Delete a specific comment by ID  
   ### Like Routes  
   - POST /api/likes: Add a like to a post  
-  - DELETE /api/likes/:id: Remove a like from a post  
+  - DELETE /api/likes/:id: Delete a like from a post  
   - GET /api/likes/:postId: Retrieve all likes for a specific post  
   
 ### Testing 
