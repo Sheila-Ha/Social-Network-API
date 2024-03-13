@@ -1,15 +1,23 @@
 const { User, Thought } = require("../models");
+// const userController = 
 
-const userController = {
+
+module.exports = {
+
   // Get all users
   async getUsers(req, res) {
     try {
       const dbUserData = await User.find().populate("friends");
 
+      // const dbUserObj = {
+      //   dbUserData,
+      //   friends: await friendCount()
+
+      // }
       res.json(dbUserData);
     } catch (err) {
       console.log(err);
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   },
   // Get single user by Id
@@ -71,12 +79,10 @@ const userController = {
   // Delete user (bonus - remove a user's associated thought when deleted)
   async deleteUser(req, res) {
     try {
-      const dbUserData = await User.findOneAndDelete({
-        _id: req.params.userId,
-      });
+      const dbUserData = await User.findOneAndDelete({ _id: req.params.userId });
 
       if (!dbUserData) {
-        return res.status(404).json({ message: `No user with this Id!` });
+        return res.status(404).json({ message: `No such user exists` });
       }
 
       // Bonus get ids of user's thought and delete them all
@@ -128,4 +134,3 @@ const userController = {
   },
 };
 
-module.exports = userController;

@@ -1,11 +1,12 @@
 const { Thought, User } = require("../models");
 
-module.exports = 
-const thoughtController = {
-  //Get all thoughts
+module.exports = {
+
+  // Get all thoughts
   async getThoughts(req, res) {
     try {
-      const dbThoughtData = await Thought.find().sort({ createAt: -1 });
+      const dbThoughtData = await Thought.find()
+      .sort({ createAt: -1 });
       res.json(dbThoughtData);
     } catch (err) {
       console.log(err);
@@ -15,14 +16,11 @@ const thoughtController = {
   // Get a single thought by id
   async getSingleThought(req, res) {
     try {
-      const dbThoughtData = await Thought.findOne({
-        _id: req.params.thoughtId,
-      });
+      const dbThoughtData = await Thought.findOne({ _id: req.params.thoughtId })
+      .sort({ createAt: -1 });
 
       if (!dbThoughtData) {
-        return res
-          .status(404)
-          .json({ message: "No through associated with this id" });
+        return res.status(404).json({ message: "No thought associated with that id" });
       }
       res.json(dbThoughtData);
     } catch (err) {
@@ -34,28 +32,32 @@ const thoughtController = {
   async createThought(req, res) {
     try {
       const dbThoughtData = await Thought.create(req.body);
-
-      const dbUserData = await User.findOneAndUpdate(
-        { _id: req.body.userId },
-        { $push: { thoughts: dbThoughtData._id } },
-        { new: true }
-      );
-
-      let successMessage = `Thought created!`;
-      let noUserIDFoundMessage = `Can not find this id, but thought created`;
-
-      let message = { message: successMessage, thought: dbThoughtData };
-
-      if (!dbUserData) {
-        message = { message: noUserIDFoundMessage, help: `Can not find id` };
-        return res.status(404).json(message);
-      }
-
-      res.json(message);
+      res.json(dbThoughtData);
     } catch (err) {
       console.log(err);
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
+    //   const dbUserData = await User.findOneAndUpdate(
+    //     { _id: req.body.userId },
+    //     { $push: { thoughts: dbThoughtData._id } },
+    //     { new: true }
+    //   );
+
+    //   let successMessage = `Thought created!`;
+    //   let noUserIDFoundMessage = `Can not find this id, but thought created`;
+
+    //   let message = { message: successMessage, thought: dbThoughtData };
+
+    //   if (!dbUserData) {
+    //     message = { message: noUserIDFoundMessage, help: `Can not find id` };
+    //     return res.status(404).json(message);
+    //   }
+
+    //   res.json(message);
+    // } catch (err) {
+    //   console.log(err);
+    //   res.status(500).json(err);
+    // }
   },
 
   async updateThought(req, res) {
@@ -77,12 +79,10 @@ const thoughtController = {
   // Delete thought
   async deleteThought(req, res) {
     try {
-      const dbThoughtData = await Thought.findOneAndDelete({
-        _id: req.params.thoughtId,
-      });
+      const dbThoughtData = await Thought.findOneAndDelete({ _id: req.params.thoughtId });
 
       if (!dbThoughtData) {
-        return res.status(404).json({ message: `Can not find Id` });
+        return res.status(404).json({ message: `No thought with that Id` });
       }
 
       // Remove through id from User's `thoughts` field
@@ -105,6 +105,7 @@ const thoughtController = {
     }
   },
 
+  // Add a reaction
   async addReaction(req, res) {
     try {
       const dbThoughtData = await Thought.findOneAndUpdate(
@@ -123,7 +124,7 @@ const thoughtController = {
       res.status(500).json(err);
     }
   },
-
+// Remove a Reaction
   async removeReaction(req, res) {
     try {
       const dbThoughtData = await Thought.findOneAndUpdate(
@@ -146,5 +147,3 @@ const thoughtController = {
     }
   },
 };
-
- 
