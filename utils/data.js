@@ -104,6 +104,23 @@ const thoughts = [
   "Geo Caching",
 ];
 
+const reactions = [
+  "Cool",
+  "Happy",
+  "Awesome",
+  "Lame",
+  "Redo",
+  "Try Again",
+  "Nice Try",
+  "Angry",
+  "Sad",
+  "Excited",
+  "Joyful",
+  "Fun",
+  "Thumbs Up",
+  "Thumbs Down",
+];
+
 // Get a random item given an array
 // arr[n] gets the nth item in the array (example arr[2] gets the third item in the array)
 const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
@@ -134,5 +151,11 @@ const getRandomThoughts = (int) => {
   }
   return userThoughts;
 };
+
+// Get random number between two numbers - https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
+const getRandomNumber = (lowNumber, highNumber) => {
+  return Math.floor(Math.random() * (highNumber - lowNumber + 1) + lowNumber);
+};
+
 // Export the functions for use in seeds.js
-module.exports = { getRandomUserName, getRandomThoughts };
+module.exports = { getRandomUserName, getRandomThoughts, getRandomNumber };

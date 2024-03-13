@@ -2,7 +2,7 @@ const connection = require("../config/connection");
 const { User, Thought, Reaction, Friend } = require("../models");
 // const { userData, thoughtsData, reactionData } = require("./d");
 // const dateFormatter = require("./dateFormatter");
-const { getRandomUserName, getRandomThoughts } = require("./data");
+const { getRandomUserName, getRandomThoughts, getRandomNumber } = require("./data");
 
 connection.on("error", (err) => err);
 
@@ -41,8 +41,8 @@ connection.once("open", async () => {
     const email = `${userName}@test.com`;
     
     // Create thoughts for the user
-    // Set random number of thoughts between 0 and 5 - https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
-    let numberOfThoughts = Math.floor(Math.random() * (5 - 0 + 1) + 0);
+    // Set random number of thoughts between 0 and 5
+    let numberOfThoughts = getRandomNumber(0, 5);
     console.log(numberOfThoughts);
     let thoughts = [];
     // If there's at least 1 thought, then GET random thought objects using a helper function, imported from ./test
@@ -56,12 +56,25 @@ connection.once("open", async () => {
       // friends: [],
       thoughts: thoughts
     });
-    await User.collection.insertOne(user);
-    //await User.collection.insertMany(users);
+    //await User.collection.insertOne(user);
+    users.push(user);
+  }
+
+  for (let i = 0; i < users.length; i++) {
+    // Get random number of friends between 0 and 7
+    const numberOfFriends = getRandomNumber(0, 7);
+    for (let j = 0; j < numberOfFriends; j++) {
+      const randomUserIndex = getRandomNumber(0, users.length - 1);
+      const friend = users[randomUserIndex];
+      // If this index is not the current user index AND it hasn't already been added as a friend, add it to the user as a friend
+      if (randomUserIndex != i && !users[i].friends.includes(friend._id)) {
+        users[i].friends.push(friend);
+      }
+    }
   }
 
   // Add users to the collection and await the results
-  // await User.collection.insertMany(users);
+  await User.collection.insertMany(users);
 
   // Add thoughts to the collection and await the results
   // await Thought.collection.insertOne({
