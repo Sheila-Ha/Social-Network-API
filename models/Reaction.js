@@ -3,9 +3,11 @@ const { Schema, Types } = require('mongoose');
 // Schema to create Reaction model
 const reactionSchema = new Schema(
   {
-    reactionBody: {
+    reactionText: {
       type: String,
       required: true,
+      trim: true,
+      minlength: 1,
       maxlength: 280,
     },
     userName: {

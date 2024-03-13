@@ -143,7 +143,7 @@ const getRandomReactions = () => {
   const numberOfReactions = getRandomNumber(0, 8);
   for (let i = 0; i < numberOfReactions; i++) {
     reactions.push({
-      reactionBody: getRandomArrItem(reactionData),
+      reactionText: getRandomArrItem(reactionData),
       userName: getRandomArrItem(userNameData),
     });
   }
