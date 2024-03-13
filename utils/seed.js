@@ -49,7 +49,7 @@ connection.once("open", async () => {
     if (numberOfThoughts > 0) {
       thoughts = getRandomThoughts(numberOfThoughts);
     }
-
+    //console.log(thoughts);
     const user = new User({
       username: userName,
       email: email,

@@ -1,10 +1,14 @@
-// Require schema and model from mongoose
-const { Schema, model } = require("mongoose");
+// Require schema, types, and model from mongoose
+const { Schema, Types, model } = require("mongoose");
 const reactionSchema = require("./Reaction");
 
 // Construct a new instance of the schema class to create Post model
 const thoughtSchema = new Schema(
   {
+    thoughtId: {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
+    },
     thoughtText: {
       type: String,
       required: true,
@@ -24,11 +28,6 @@ const thoughtSchema = new Schema(
       get: (timestamp) => new Date(timestamp).toISOString(),
     },
     reactions: [reactionSchema],
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
   },
   {
     toJSON: {
@@ -47,6 +46,7 @@ thoughtSchema
   });
 
 // Initialize Thought model
-const Thought = model("Thought", thoughtSchema);
+// const Thought = model("Thought", thoughtSchema);
 
-module.exports = Thought;
+// module.exports = Thought;
+module.exports = thoughtSchema;

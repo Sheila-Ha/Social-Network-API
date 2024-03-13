@@ -1,5 +1,5 @@
 const { User, Thought, Reaction, Friend } = require("../models");
-// const dateFormat = require ('./dateFormatter');
+// const dateFormat = require ("./dateFormatter");
 
 // console.log(dateFormat(Date.now()));
 
@@ -80,28 +80,28 @@ const userNames = [
 ];
 
 const thoughts = [
-  'Hello World',
-  'Track miles walked',
-  'Tracked Hikes to go on',
-  'Email',
-  'Newspaper',
-  'Books',
-  'Movies',
-  'Baseball scores',
-  'Camping',
-  'Restaurant Locator',
-  'Card game finder',
-  'New car',
-  'Weather today',
-  'Chicken wing flavors',
-  'Country music',
-  'Vacation locations',
-  'Basketball schedule',
-  'News',
-  'Live music finder',
-  'Dog Parks',
-  'Bike trails',
-  'Geo Caching',
+  "Hello World",
+  "Track miles walked",
+  "Tracked Hikes to go on",
+  "Email",
+  "Newspaper",
+  "Books",
+  "Movies",
+  "Baseball scores",
+  "Camping",
+  "Restaurant Locator",
+  "Card game finder",
+  "New car",
+  "Weather today",
+  "Chicken wing flavors",
+  "Country music",
+  "Vacation locations",
+  "Basketball schedule",
+  "News",
+  "Live music finder",
+  "Dog Parks",
+  "Bike trails",
+  "Geo Caching",
 ];
 
 // Get a random item given an array
@@ -123,13 +123,16 @@ const getRandomUserName = function() {
 const getRandomThoughts = (int) => {
   const userThoughts = [];
   for (let i = 0; i < int; i++) {
-    const thought = new Thought({
+    userThoughts.push({
       thoughtText: getRandomArrItem(thoughts),
     });
+    // const thought = new Thought({
+    //   thoughtText: getRandomArrItem(thoughts),
+    // });
     //console.log(thought.thoughtText);
-    userThoughts.push(thought);
+    // userThoughts.push(thought);
   }
-  return thoughts;
+  return userThoughts;
 };
 // Export the functions for use in seeds.js
 module.exports = { getRandomUserName, getRandomThoughts };
