@@ -96,7 +96,9 @@ module.exports = {
       //       ]
       //     }        
       //   );
-      // }
+
+      
+      }
 
       res.json(dbUserData);
     } catch (err) {
