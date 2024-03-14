@@ -10,7 +10,7 @@ by Sheila Hanson ![Github license](https://img.shields.io/badge/license-MIT-blue
   - [User Story](#user-story)
   - [Acceptance Criteria](#acceptance-criteria)
 - [Usage](#usage)
-  - [Database Model Diagram](#database-model-diagram)
+  - [Database Mongo](#database-mongo)
 - [API Endpoints](#api-endpoints)
   - [User Routes](#user-routes)
   - [Post Routes](#post-routes)
@@ -58,27 +58,20 @@ by Sheila Hanson ![Github license](https://img.shields.io/badge/license-MIT-blue
 
       
 ## Usage 
-- Run schema
-  -  Develop folder - db folder - right click schema.sql 
-      -  Then open in an integrated terminal and type the following commands in  
-           -  mysql -u root -p  
-           -  password - [enter your password]  
-           -  source db/schema.sql  
-           -  quit (this is going to end the sql shell = Bye)  
-   ![alt text](assets/img/mysqlstartup.png)
-- Run seeds
-  - JS server.js - right click server.js
-      - Then open in an integrated terminal and type the follow commands in  
-          - npm i (run to make sure all the dependencies are installed before you begin)
+  Invoke application
+  - Then open in an integrated terminal and type the follow commands in  
+            - npm i (run to make sure all the dependencies are installed before you begin)  
           - npm run seed  
-      - Starting the server - type the following below in the command line
-          - npm run watch  
+  -  Starting the server - type the following below in the command line  
+          - npm start
            - response on last line = App listening on port 3001!  
-  ![alt text](assets/img/npmi.png)  
-![alt text](assets/img/npmrunwatch.png)
+  ![alt text](images/invokeapplication.png)
 
- ### Database Model Diagram  
-![alt text](<assets/img/EER Diagram.png>) 
+ ### Database Mongo  
+ - MongoDB users  
+  ![alt text](<images/MongoDB users.png>)
+  - MongoDB thoughts  
+  ![alt text](<images/MongoDB thoughts.png>)
 
 ## API Endpoints  
   ### User Routes  
@@ -107,19 +100,24 @@ Insomnia - testing will be done using Insomnia
   - run npm run start
   - make sure your mongoDB has the DB from the server.js and vice versa connected up
   - in insomnia, you will do get, post, delete routes for users, thoughts, friends and reactions
-  - an example of a post user route: URL: [http://localhost:3001/api/users](http://localhost:3001/api/users) - then the json body: {"username": "test4", "email":  "test@test.com"}
-
- 
+  - an example of a post user route: URL: [http://localhost:3001/api/users](http://localhost:3001/api/users) - then the json body: {"username": "test4", "email":  "test@test.com"}  
+  
+    - PUT update thought  
+  ![alt text](<images/Insomnia update thought.png>)  
+    - PUT update user
+  ![alt text](<images/Insomnia update user.png>)
   
   DEMO: https://app.screencast.com/fCNdl169gDF9t
 
 ## Features
-- MySQL workbench database model EER diagram  
+- Mongo database    
 - Logo  
-- Database Model Diagram  
+
 
 ## Challenges  
- 
+ - Trying to not become confused my multiple files
+ - Trying to correctly keep plural and singular names correct
+ - 
 
 
 ## Contributing
