@@ -38,7 +38,7 @@ connection.once("open", async () => {
   //const friends = [];
 
   // Loop 20 times, add users to the user array
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 10; i++) {
     const userName = getRandomUserName();
     const email = `${userName}@test.com`;
     
