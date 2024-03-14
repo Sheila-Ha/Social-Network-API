@@ -48,8 +48,8 @@ userSchema
   // Getter
   .get(function () {
     let length = 0;
-    if (this.friend != undefined) {
-      length = this.friend.length;
+    if (this.friends != undefined) {
+      length = this.friends.length;
     }
     return length;
   });
