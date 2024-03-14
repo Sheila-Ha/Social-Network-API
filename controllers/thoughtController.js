@@ -61,19 +61,24 @@ module.exports = {
   },
 
   async updateThought(req, res) {
-    const dbThoughtData = await Thought.findOneAndUpdate(
-      { _id: req.params.thoughtId },
-      { $set: req.body },
-      { runValidators: true, new: true }
-    );
+    try
+    {
+      const dbThoughtData = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $set: req.body },
+        { runValidators: true, new: true }
+      );
 
-    if (!dbThoughtData) {
-      return res.status(404).json({ message: `Can not find id` });
+      if (!dbThoughtData) {
+        return res.status(404).json({ message: `Can not find id` });
+      }
+
+      res.json(dbThoughtData);
     }
-
-    res.json(dbThoughtData);
-    console.log(err);
-    res.status(500).json(err);
+    catch(err){
+      console.log(err);
+      res.status(500).json(err);
+    }
   },
 
   // Delete thought
