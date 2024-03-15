@@ -1,8 +1,8 @@
 # Social-Network-API <!-- omit from toc -->
 by Sheila Hanson ![Github license](https://img.shields.io/badge/license-MIT-blue.svg)  
-![alt text](assets/img/Logo.png)  
+ ![alt text](images/Logo.png)
 ## Description <!-- omit from toc -->
-
+MongoDB is a popular choice for many social networks due to its speed with large amounts of data and flexibility with unstructured data. I have built an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list.  
 
 ## Table of Contents <!-- omit from toc -->
   
@@ -12,10 +12,6 @@ by Sheila Hanson ![Github license](https://img.shields.io/badge/license-MIT-blue
 - [Usage](#usage)
   - [Database Mongo](#database-mongo)
 - [API Endpoints](#api-endpoints)
-  - [User Routes](#user-routes)
-  - [Post Routes](#post-routes)
-  - [Comment Routes](#comment-routes)
-  - [Like Routes](#like-routes)
   - [Testing](#testing)
 - [Features](#features)
 - [Challenges](#challenges)
@@ -74,33 +70,17 @@ by Sheila Hanson ![Github license](https://img.shields.io/badge/license-MIT-blue
   ![alt text](<images/MongoDB thoughts.png>)
 
 ## API Endpoints  
-  ### User Routes  
-  - POST /api/user/register: Register a new user account   
-  - POST /api/user/login: Log in as a user  
-  - POST /api/user/upload-avatar: Upload user avatar  
-  ### Post Routes  
-  - POST /api/posts: Create a new post  
-  - POST /api/posts/upload-image: Upload post image.  
-  - GET /api/posts: Retrieve all posts  
-  - GET /api/posts/:id: Retrieve a specific post by ID  
-  - PUT /api/posts/:id: Update a specific post by ID  
-  - DELETE /api/posts/:id: Delete a specific post by ID  
-  ### Comment Routes  
-  - POST /api/comments: Create a new comment  
-  - GET /api/comments: Retrieve all comments for a specific post  
-  - PUT /api/comments/:id: Update a specific comment by ID  
-  - DELETE /api/comments/:id: Delete a specific comment by ID  
-  ### Like Routes  
-  - POST /api/likes: Add a like to a post  
-  - DELETE /api/likes/:id: Delete a like from a post  
-  - GET /api/likes/:postId: Retrieve all likes for a specific post  
+  ![alt text](<images/api endpoints.png>)
   
 ### Testing 
 Insomnia - testing will be done using Insomnia
   - run npm run start
-  - make sure your mongoDB has the DB from the server.js and vice versa connected up
-  - in insomnia, you will do get, post, delete routes for users, thoughts, friends and reactions
-  - an example of a post user route: URL: [http://localhost:3001/api/users](http://localhost:3001/api/users) - then the json body: {"username": "test4", "email":  "test@test.com"}  
+  - Make sure your mongoDB has the DB from the server.js and vice versa connected up
+  - In insomnia, you will Delete, Update, GET, Create for users, thoughts, friends and reactions
+  - An example of a post user route: URL: 
+    - [http://localhost:3001/api/users](http://localhost:3001/api/users)  
+  - The json body could include:  
+      - {"username": "test4", "email": "test@test.com"}  
   
     - PUT update thought  
   ![alt text](<images/Insomnia update thought.png>)  
@@ -115,13 +95,13 @@ Insomnia - testing will be done using Insomnia
 
 
 ## Challenges  
- - Trying to not become confused my multiple files
- - Trying to correctly keep plural and singular names correct
- - 
+ - Trying to not become confused my multiple files  
+ - Trying to correctly keep plural and singular names correct throughout files
+ - Navigating through errors
 
 
 ## Contributing
-[NPM](https://www.npmjs.com/package/inquirer/v/8.2.4?activeTab=readme#installation)  
+[NPM](https://www.npmjs.com/package/mongoose)  
 [Inquirer](https://www.npmjs.com/package/inquirer/v/8.2.4)  
 [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web)  
 [Node.js](https://nodejs.org/docs/latest/api/)  
@@ -132,7 +112,9 @@ Insomnia - testing will be done using Insomnia
 [Shields](https://shields.io/)  
 [Sequelize](https://sequelize.org/docs/v6/getting-started/)  
 [YouTube](https://youtube.com)  
-[Insomnia](https://insomnia.rest)
+[Insomnia](https://insomnia.rest)  
+[MongoDB](https://www.mongodb.com/docs/compass/current/connect/)  
+[Mongoose](https://mongoosejs.com/docs/guide.html)
 
 ## Questions
 ![Ask me anything](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)
