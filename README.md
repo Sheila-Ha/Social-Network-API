@@ -24,12 +24,13 @@ MongoDB is a popular choice for many social networks due to its speed with large
 ## Installation
 - Clone the repository to get your starter code  
 - Install dependencies
-  - npm init  
-    - npm install Sequelize  
-    - npm install dotenv package  
-    -  npm install MySQL  
-    -  npm install MySQL2  
-    -  npm install Node.js  
+  - npm i =
+    - express  
+    - mongodb  
+    - mongoose
+    - npm init  
+    - nodemon
+   
  - Insomnia
    - Used for testing
   
@@ -92,12 +93,17 @@ Insomnia - testing will be done using Insomnia
 ## Features
 - Mongo database    
 - Logo  
+- Demo  
+- When user updates there username the username updates on their associated thoughts as well
+- Application deletes a user's associated thoughts when the user is deleted
 
 
 ## Challenges  
- - Trying to not become confused my multiple files  
+ - Trying not become confused with multiple files  
  - Trying to correctly keep plural and singular names correct throughout files
  - Navigating through errors
+ - Hooking users to themselves as friends
+ - Testing in Insomnia and making sure you restarted it and grabbed the correct ID's
 
 
 ## Contributing
